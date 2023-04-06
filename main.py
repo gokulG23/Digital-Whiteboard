@@ -1,10 +1,30 @@
 # Ideas
 # Create option to change background color
+# Create option to clear the whiteboard
 
 from tkinter import *
 # from tkinter.colorchooser import askcolor
 # from tkinter import ttk
 # import tkinter as tk
+
+# function
+def create_colour(position_y, c_opt):
+    color = ''
+    if c_opt == 1 :
+        color = 'black'
+    elif c_opt == 2 :
+        color = 'red'
+    elif c_opt == 3:
+        color = 'brown'
+    elif c_opt == 4:
+        color = 'blue'
+    elif c_opt == 5:
+        color = 'yellow'
+    elif c_opt == 6:
+        color = 'green'
+    elif c_opt == 7:
+        color = 'white'
+    id = colour_palette_canvas.create_rectangle((12,position_y,42,position_y+30), fill=color)
 
 whiteboard  = Tk()
 
@@ -37,5 +57,13 @@ whiteboard_canvas.place(x=100, y=35)
 eraser_button = Button(whiteboard, image=eraser_image, bg="#f2f3f5")
 eraser_button.place(x=20, y=340)
 
+# collours of the colour_palette_canvas
+c_opt = 1 # color option
+position_y = 10
+counter = 1
+for counter in range(1, 8):
+    create_colour(position_y, c_opt)
+    c_opt += 1
+    position_y += 40
 
 whiteboard.mainloop()
