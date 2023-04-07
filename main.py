@@ -5,6 +5,7 @@
 # Create option to change background color
 # Create option to clear the whiteboard
 # Creat a change Thickness button
+# Creat a save button
 #-------------------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------------------
 
@@ -54,6 +55,20 @@ def create_colour(position_y, c_opt):
 
     # Create a rectangle with that colour on the right position    
     id = colour_palette_canvas.create_rectangle((12,position_y,42,position_y+30), fill=color)
+    colour_palette_canvas.tag_bind(id, 'Button-1', lambda x: show_color(color))
+
+
+def locate_xy(work):
+    global current_x, current_y
+
+    current_x = work.x
+    current_y = work.y
+
+def addLine(work):
+
+    colour = 'black'
+    whiteboard_canvas.create_line((current_x, current_y, work.x, work.y), width=2, fill=colour)
+
 #-------------------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------------------
 
@@ -107,9 +122,12 @@ for counter in range(1, 8):
     create_colour(position_y, c_opt)
     c_opt += 1
     position_y += 40
+#-------------------------------------------------------------------------------------------------------------------
+
+whiteboard_canvas.bind('<Button-1>', locate_xy)
+whiteboard_canvas.bind('<B1-Motion>', addLine)
 
 whiteboard.mainloop()
-#-------------------------------------------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------------------
