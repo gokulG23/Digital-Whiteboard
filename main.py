@@ -35,6 +35,8 @@ from tkinter import *
 def show_color(new_color):
     global color, line_width
 
+    line_width = 0
+
     color = new_color
 
     if color == 'white':
@@ -135,13 +137,13 @@ color_sidebar_label.place(x=10, y=15)
 # Canvas
 colour_palette_canvas = Canvas(whiteboard, bg="#ffffff", width=50, height=290, bd=0)
 colour_palette_canvas.place(x=20, y=40)
-whiteboard_canvas = Canvas(whiteboard, width=900, height=470, bg="#ffffff", cursor="hand2")
+whiteboard_canvas = Canvas(whiteboard, width=900, height=470, bg="#ffffff", cursor="cross")
 whiteboard_canvas.place(x=100, y=35)
 #buttons
 eraser_button = Button(whiteboard, image=eraser_image, bg="#f2f3f5", command=eraser)
-eraser_button.place(x=20, y=340)
+eraser_button.place(x=25, y=340)
 garbage_button = Button(whiteboard, image=garbage_image, bg="#f2f3f5", command=clear_all)
-garbage_button.place(x=20, y=410)
+garbage_button.place(x=25, y=395)
 # collours of the colour_palette_canvas
 c_opt = 1 # color option
 position_y = 10
