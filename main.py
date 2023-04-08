@@ -33,9 +33,14 @@ from tkinter import *
 # Functions
 
 def show_color(new_color):
-    global color
+    global color, line_width
 
     color = new_color
+    
+    if color == 'white':
+        line_width = 50
+    else:
+        line_width = 5
 
 def locate_xy(work):
     global current_x, current_y
@@ -43,10 +48,13 @@ def locate_xy(work):
     current_x = work.x
     current_y = work.y
 
+def new_canvas():
+    show_color('white')
+
 def addLine(work):
     global current_x, current_y
 
-    whiteboard_canvas.create_line((current_x, current_y, work.x, work.y), width=2, fill=color)
+    whiteboard_canvas.create_line((current_x, current_y, work.x, work.y), width=line_width, fill=color)
     current_x = work.x
     current_y = work.y
 
@@ -75,7 +83,7 @@ def create_colour(position_y, c_opt):
     id = colour_palette_canvas.create_rectangle((12,position_y,42,position_y+30), fill=color)
     colour_palette_canvas.tag_bind(id, '<Button-1>', lambda x: show_color(color))
 
-def new_canvas():
+'''def new_canvas():
     c_opt = 1 # color option
     position_y = 10
     counter = 1
@@ -84,7 +92,7 @@ def new_canvas():
     for counter in range(1, 8):
         create_colour(position_y, c_opt)
         c_opt += 1
-        position_y += 40
+        position_y += 40'''
 
 #-------------------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------------------
