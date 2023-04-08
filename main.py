@@ -36,7 +36,7 @@ def show_color(new_color):
     global color, line_width
 
     color = new_color
-    
+
     if color == 'white':
         line_width = 50
     else:
@@ -48,7 +48,7 @@ def locate_xy(work):
     current_x = work.x
     current_y = work.y
 
-def new_canvas():
+def eraser():
     show_color('white')
 
 def addLine(work):
@@ -83,7 +83,7 @@ def create_colour(position_y, c_opt):
     id = colour_palette_canvas.create_rectangle((12,position_y,42,position_y+30), fill=color)
     colour_palette_canvas.tag_bind(id, '<Button-1>', lambda x: show_color(color))
 
-'''def new_canvas():
+def clear_all():
     c_opt = 1 # color option
     position_y = 10
     counter = 1
@@ -92,7 +92,7 @@ def create_colour(position_y, c_opt):
     for counter in range(1, 8):
         create_colour(position_y, c_opt)
         c_opt += 1
-        position_y += 40'''
+        position_y += 40
 
 #-------------------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------------------
@@ -128,6 +128,7 @@ whiteboard.iconbitmap(default="icon/whiteboard.ico")
 # images
 color_sidebar_image = PhotoImage(file="images/color_sidebar.png")
 eraser_image = PhotoImage(file="images/eraser.png")
+garbage_image = PhotoImage(file="images/garbage.png")
 # labels
 color_sidebar_label = Label(whiteboard, image=color_sidebar_image, bg="#d3d3d3")
 color_sidebar_label.place(x=10, y=15)
@@ -137,8 +138,10 @@ colour_palette_canvas.place(x=20, y=40)
 whiteboard_canvas = Canvas(whiteboard, width=900, height=470, bg="#ffffff", cursor="hand2")
 whiteboard_canvas.place(x=100, y=35)
 #buttons
-eraser_button = Button(whiteboard, image=eraser_image, bg="#f2f3f5", command=new_canvas)
+eraser_button = Button(whiteboard, image=eraser_image, bg="#f2f3f5", command=eraser)
 eraser_button.place(x=20, y=340)
+garbage_button = Button(whiteboard, image=garbage_image, bg="#f2f3f5", command=clear_all)
+garbage_button.place(x=20, y=410)
 # collours of the colour_palette_canvas
 c_opt = 1 # color option
 position_y = 10
