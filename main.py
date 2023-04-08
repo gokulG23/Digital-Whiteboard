@@ -46,8 +46,7 @@ def locate_xy(work):
 def addLine(work):
     global current_x, current_y
 
-    colour = 'black'
-    whiteboard_canvas.create_line((current_x, current_y, work.x, work.y), width=2, fill=colour)
+    whiteboard_canvas.create_line((current_x, current_y, work.x, work.y), width=2, fill=color)
     current_x = work.x
     current_y = work.y
 
@@ -74,7 +73,7 @@ def create_colour(position_y, c_opt):
 
     # Create a rectangle with that colour on the right position    
     id = colour_palette_canvas.create_rectangle((12,position_y,42,position_y+30), fill=color)
-    colour_palette_canvas.tag_bind(id, 'Button-1', lambda x: show_color(color))
+    colour_palette_canvas.tag_bind(id, '<Button-1>', lambda x: show_color(color))
 
 def new_canvas():
     c_opt = 1 # color option
