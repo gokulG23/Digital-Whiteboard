@@ -32,6 +32,7 @@ from tkinter import *
 #-------------------------------------------------------------------------------------------------------------------
 # Functions
 
+# To define the color of what will be drawn
 def set_color(new_color):
     global color, line_width, cursor_color
 
@@ -46,16 +47,19 @@ def set_color(new_color):
     else:
         line_width = 5
 
+# To locate the xy address of the point when you click with the mouse
 def locate_xy(work):
     global current_x, current_y
 
     current_x = work.x
     current_y = work.y
 
+# To "erase" when you draw (in other words, to draw with the background color)
 def eraser():
     set_color('white')
 
-def addLine(work):
+# To draw when you press the mouse button and moved the mouse
+def draw(work):
     global current_x, current_y
 
     whiteboard_canvas.create_line((current_x, current_y, work.x, work.y), width=line_width, fill=color)
@@ -87,7 +91,7 @@ def create_colour(position_y, c_opt):
     id = colour_palette_canvas.create_rectangle((12,position_y,42,position_y+30), fill=color)
     colour_palette_canvas.tag_bind(id, '<Button-1>', lambda x: set_color(color))
     
-
+# To clear all the canvas and rebuild it
 def clear_all():
     c_opt = 1 # color option
     position_y = 10
@@ -140,7 +144,7 @@ color_sidebar_label.place(x=10, y=15)
 # Canvas
 colour_palette_canvas = Canvas(whiteboard, bg="#ffffff", width=50, height=290, bd=0)
 colour_palette_canvas.place(x=20, y=40)
-whiteboard_canvas = Canvas(whiteboard, width=900, height=470, bg="#ffffff", cursor='dot blue')
+whiteboard_canvas = Canvas(whiteboard, width=900, height=470, bg="#ffffff", cursor="dot blue")
 whiteboard_canvas.place(x=100, y=35)
 #buttons
 eraser_button = Button(whiteboard, image=eraser_image, bg="#f2f3f5", command=eraser)
@@ -159,7 +163,7 @@ for counter in range(1, 8):
 set_color('')
 
 whiteboard_canvas.bind('<Button-1>', locate_xy)
-whiteboard_canvas.bind('<B1-Motion>', addLine)
+whiteboard_canvas.bind('<B1-Motion>', draw)
 
 whiteboard.mainloop()
 
