@@ -32,6 +32,25 @@ from tkinter import *
 #-------------------------------------------------------------------------------------------------------------------
 # Functions
 
+def show_color(new_color):
+    global color
+
+    color = new_color
+
+def locate_xy(work):
+    global current_x, current_y
+
+    current_x = work.x
+    current_y = work.y
+
+def addLine(work):
+    global current_x, current_y
+
+    colour = 'black'
+    whiteboard_canvas.create_line((current_x, current_y, work.x, work.y), width=2, fill=colour)
+    current_x = work.x
+    current_y = work.y
+
 # To creat the colours of the colour palette
 def create_colour(position_y, c_opt):
 
@@ -57,17 +76,16 @@ def create_colour(position_y, c_opt):
     id = colour_palette_canvas.create_rectangle((12,position_y,42,position_y+30), fill=color)
     colour_palette_canvas.tag_bind(id, 'Button-1', lambda x: show_color(color))
 
+def new_canvas():
+    c_opt = 1 # color option
+    position_y = 10
+    counter = 1
 
-def locate_xy(work):
-    global current_x, current_y
-
-    current_x = work.x
-    current_y = work.y
-
-def addLine(work):
-
-    colour = 'black'
-    whiteboard_canvas.create_line((current_x, current_y, work.x, work.y), width=2, fill=colour)
+    whiteboard_canvas.delete('all')
+    for counter in range(1, 8):
+        create_colour(position_y, c_opt)
+        c_opt += 1
+        position_y += 40
 
 #-------------------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------------------
@@ -112,7 +130,7 @@ colour_palette_canvas.place(x=20, y=40)
 whiteboard_canvas = Canvas(whiteboard, width=900, height=470, bg="#ffffff", cursor="hand2")
 whiteboard_canvas.place(x=100, y=35)
 #buttons
-eraser_button = Button(whiteboard, image=eraser_image, bg="#f2f3f5")
+eraser_button = Button(whiteboard, image=eraser_image, bg="#f2f3f5", command=new_canvas)
 eraser_button.place(x=20, y=340)
 # collours of the colour_palette_canvas
 c_opt = 1 # color option
