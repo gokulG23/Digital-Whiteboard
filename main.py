@@ -2,8 +2,6 @@
 #-------------------------------------------------------------------------------------------------------------------
 # Ideas
 
-# Create option to change background color
-# Create option to clear the whiteboard
 # Creat a change Thickness button
 # Creat a save button
 #-------------------------------------------------------------------------------------------------------------------
@@ -18,12 +16,6 @@ from tkinter import *
 # "tkinter" provides a robust, platform-independent windowing toolkit that is available to Python programmers
 # read to learn more about tkinter library: https://docs.python.org/pt-br/3/library/tk.html
 # "*" is used to import everything from the library
-
-# Others importations that I may be used
-
-# from tkinter.colorchooser import askcolor
-# from tkinter import ttk
-# import tkinter as tk
 #-------------------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------------------
 
@@ -39,6 +31,7 @@ def set_color(new_color):
     color = new_color
     # cursor_color = new_color
 
+    # If there is no color to draw, it must not be possible to draw any line
     if color == '':
         line_width = 0
 
@@ -89,6 +82,7 @@ def create_colour(position_y, c_opt):
 
     # Create a rectangle with that colour on the right position    
     id = colour_palette_canvas.create_rectangle((12,position_y,42,position_y+30), fill=color)
+    # Bind the click of the button 1 of the mouse with the set_color function with the current color
     colour_palette_canvas.tag_bind(id, '<Button-1>', lambda x: set_color(color))
     
 # To clear all the canvas and rebuild it
@@ -160,11 +154,15 @@ for counter in range(1, 8):
     c_opt += 1
     position_y += 40
 #-------------------------------------------------------------------------------------------------------------------
+
+# Set the initial color of hte mouse with nothing
 set_color('')
 
+# Bind the whiteboard canvas with the functions when the mouse is click os moved (with the button pressed)
 whiteboard_canvas.bind('<Button-1>', locate_xy)
 whiteboard_canvas.bind('<B1-Motion>', draw)
 
+# Refresh the whiteboard and make it appear in looping
 whiteboard.mainloop()
 
 #-------------------------------------------------------------------------------------------------------------------
