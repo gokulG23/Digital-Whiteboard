@@ -32,10 +32,11 @@ from tkinter import *
 #-------------------------------------------------------------------------------------------------------------------
 # Functions
 
-def show_color(new_color):
-    global color, line_width
+def set_color(new_color):
+    global color, line_width, cursor_color
 
     color = new_color
+    # cursor_color = new_color
 
     if color == '':
         line_width = 0
@@ -52,7 +53,7 @@ def locate_xy(work):
     current_y = work.y
 
 def eraser():
-    show_color('white')
+    set_color('white')
 
 def addLine(work):
     global current_x, current_y
@@ -84,7 +85,7 @@ def create_colour(position_y, c_opt):
 
     # Create a rectangle with that colour on the right position    
     id = colour_palette_canvas.create_rectangle((12,position_y,42,position_y+30), fill=color)
-    colour_palette_canvas.tag_bind(id, '<Button-1>', lambda x: show_color(color))
+    colour_palette_canvas.tag_bind(id, '<Button-1>', lambda x: set_color(color))
     
 
 def clear_all():
@@ -139,7 +140,7 @@ color_sidebar_label.place(x=10, y=15)
 # Canvas
 colour_palette_canvas = Canvas(whiteboard, bg="#ffffff", width=50, height=290, bd=0)
 colour_palette_canvas.place(x=20, y=40)
-whiteboard_canvas = Canvas(whiteboard, width=900, height=470, bg="#ffffff", cursor="mouse")
+whiteboard_canvas = Canvas(whiteboard, width=900, height=470, bg="#ffffff", cursor='dot blue')
 whiteboard_canvas.place(x=100, y=35)
 #buttons
 eraser_button = Button(whiteboard, image=eraser_image, bg="#f2f3f5", command=eraser)
@@ -155,7 +156,7 @@ for counter in range(1, 8):
     c_opt += 1
     position_y += 40
 #-------------------------------------------------------------------------------------------------------------------
-show_color('')
+set_color('')
 
 whiteboard_canvas.bind('<Button-1>', locate_xy)
 whiteboard_canvas.bind('<B1-Motion>', addLine)
