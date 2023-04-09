@@ -12,6 +12,9 @@
 #-------------------------------------------------------------------------------------------------------------------
 # Lybraries
 
+import tkinter
+from tkinter import ttk
+
 from tkinter import *
 # "tkinter" provides a robust, platform-independent windowing toolkit that is available to Python programmers
 # read to learn more about tkinter library: https://docs.python.org/pt-br/3/library/tk.html
@@ -19,10 +22,19 @@ from tkinter import *
 #-------------------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------------------
 
+whiteboard  = Tk()
+# Instantiating the object Tk() of the class to the variable "whiteboard"
+# So we can use all the functions of that object of the class through the variable "whiteboard"
+# An object is a collection of variables and methods (functions).
 
 #-------------------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------------------
 # Functions
+
+current_value = tkinter.DoubleVar()
+
+def get_current_value():
+    return '{: .2}'.format(current_value.get())
 
 # To define the color of what will be drawn
 def set_color(new_color):
@@ -36,9 +48,9 @@ def set_color(new_color):
         line_width = 0
 
     if color == 'white':
-        line_width = 50
+        line_width = 40
     else:
-        line_width = 5
+        line_width = get_current_value()
 
 # To locate the xy address of the point when you click with the mouse
 def locate_xy(work):
@@ -54,6 +66,8 @@ def eraser():
 # To draw when you press the mouse button and moved the mouse
 def draw(work):
     global current_x, current_y
+
+    line_width = get_current_value()
 
     whiteboard_canvas.create_line((current_x, current_y, work.x, work.y), width=line_width, fill=color)
     current_x = work.x
@@ -78,7 +92,7 @@ def create_colour(position_y, c_opt):
     elif c_opt == 6:
         color = 'green'
     elif c_opt == 7:
-        color = 'white'
+        color = '#FFFFFE' # almost white
 
     # Create a rectangle with that colour on the right position    
     id = colour_palette_canvas.create_rectangle((12,position_y,42,position_y+30), fill=color)
@@ -107,11 +121,6 @@ def clear_all():
 
 #-------------------------------------------------------------------------------------------------------------------
 # Creating the whiteboard window
-
-whiteboard  = Tk()
-# Instantiating the object Tk() of the class to the variable "whiteboard"
-# So we can use all the functions of that object of the class through the variable "whiteboard"
-# An object is a collection of variables and methods (functions).
 
 # Defining whiteboard parameters
 
@@ -161,6 +170,17 @@ set_color('')
 # Bind the whiteboard canvas with the functions when the mouse is click os moved (with the button pressed)
 whiteboard_canvas.bind('<Button-1>', locate_xy)
 whiteboard_canvas.bind('<B1-Motion>', draw)
+
+
+
+def slider_changed(event):
+    value_label.configure(text=get_current_value())
+
+slider = ttk.Scale(whiteboard, from_=0, to=100, orient='horizontal', command=slider_changed, variable= current_value)
+slider.place(x=100, y=525)
+
+value_label = ttk.Label(whiteboard, text=get_current_value())
+value_label.place(x=210, y=530)
 
 # Refresh the whiteboard and make it appear in looping
 whiteboard.mainloop()
