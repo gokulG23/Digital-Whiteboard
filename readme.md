@@ -7,6 +7,8 @@ A digital whiteboard made with Python 3, using Tkinter.
 Tkinter is a standard library in python used for creating Graphical User Interface (GUI)
 Click [here](https://docs.python.org/pt-br/3/library/tk.html) with you wish to read more about tkinter library.
 
+![software_print](images/print_whiteboard.PNG)
+
 ## How to run this project
 
 To run this project, we have two options:
