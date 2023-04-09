@@ -128,23 +128,34 @@ whiteboard.configure(bg="#d3d3d3") # d3d3d3 -> hexadecimal to light gray color
 
 # Whiteboard icon
 whiteboard.iconbitmap(default="icon/whiteboard.ico")
+
 # images
 color_sidebar_image = PhotoImage(file="images/color_sidebar.png")
 eraser_image = PhotoImage(file="images/eraser.png")
 garbage_image = PhotoImage(file="images/garbage.png")
+
+# slader
+slider = ttk.Scale(whiteboard, from_=2, to=100, orient='horizontal', variable= current_value)
+slider.place(x=100, y=525)
+
 # labels
 color_sidebar_label = Label(whiteboard, image=color_sidebar_image, bg="#d3d3d3")
 color_sidebar_label.place(x=10, y=15)
+value_label = ttk.Label(whiteboard, text="thickness")
+value_label.place(x=210, y=530)
+
 # Canvas
 colour_palette_canvas = Canvas(whiteboard, bg="#ffffff", width=50, height=290, bd=0)
 colour_palette_canvas.place(x=20, y=40)
 whiteboard_canvas = Canvas(whiteboard, width=900, height=470, bg="#ffffff", cursor="dot blue")
 whiteboard_canvas.place(x=100, y=35)
+
 #buttons
 eraser_button = Button(whiteboard, image=eraser_image, bg="#f2f3f5", command=eraser)
 eraser_button.place(x=25, y=340)
 garbage_button = Button(whiteboard, image=garbage_image, bg="#f2f3f5", command=clear_all)
 garbage_button.place(x=25, y=395)
+
 # collours of the colour_palette_canvas
 c_opt = 1 # color option
 position_y = 10
@@ -161,12 +172,6 @@ set_color('black')
 # Bind the whiteboard canvas with the functions when the mouse is click os moved (with the button pressed)
 whiteboard_canvas.bind('<Button-1>', locate_xy)
 whiteboard_canvas.bind('<B1-Motion>', draw)
-
-slider = ttk.Scale(whiteboard, from_=2, to=100, orient='horizontal', variable= current_value)
-slider.place(x=100, y=525)
-
-value_label = ttk.Label(whiteboard, text="thickness")
-value_label.place(x=210, y=530)
 
 # Refresh the whiteboard and make it appear in looping
 whiteboard.mainloop()
