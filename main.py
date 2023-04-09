@@ -69,7 +69,7 @@ def draw(work):
 
     line_width = get_current_value()
 
-    whiteboard_canvas.create_line((current_x, current_y, work.x, work.y), width=line_width, fill=color)
+    whiteboard_canvas.create_oval((current_x, current_y, work.x, work.y), outline= color, width=line_width)
     current_x = work.x
     current_y = work.y
 
