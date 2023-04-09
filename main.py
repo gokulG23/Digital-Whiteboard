@@ -31,7 +31,7 @@ whiteboard  = Tk()
 #-------------------------------------------------------------------------------------------------------------------
 # Functions
 
-current_value = tkinter.DoubleVar()
+current_value = tkinter.DoubleVar(whiteboard, 1)
 
 def get_current_value():
     return '{: .2}'.format(current_value.get())
@@ -41,16 +41,7 @@ def set_color(new_color):
     global color, line_width, cursor_color
 
     color = new_color
-    # cursor_color = new_color
-
-    # If there is no color to draw, it must not be possible to draw any line
-    if color == '':
-        line_width = 0
-
-    if color == 'white':
-        line_width = 40
-    else:
-        line_width = get_current_value()
+    line_width = get_current_value()
 
 # To locate the xy address of the point when you click with the mouse
 def locate_xy(work):
@@ -165,21 +156,16 @@ for counter in range(1, 8):
 #-------------------------------------------------------------------------------------------------------------------
 
 # Set the initial color of hte mouse with nothing
-set_color('')
+set_color('black')
 
 # Bind the whiteboard canvas with the functions when the mouse is click os moved (with the button pressed)
 whiteboard_canvas.bind('<Button-1>', locate_xy)
 whiteboard_canvas.bind('<B1-Motion>', draw)
 
-
-
-def slider_changed(event):
-    value_label.configure(text=get_current_value())
-
-slider = ttk.Scale(whiteboard, from_=0, to=100, orient='horizontal', command=slider_changed, variable= current_value)
+slider = ttk.Scale(whiteboard, from_=2, to=100, orient='horizontal', variable= current_value)
 slider.place(x=100, y=525)
 
-value_label = ttk.Label(whiteboard, text=get_current_value())
+value_label = ttk.Label(whiteboard, text="thickness")
 value_label.place(x=210, y=530)
 
 # Refresh the whiteboard and make it appear in looping
