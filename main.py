@@ -1,49 +1,40 @@
 #-------------------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------------------
-# Ideas
-
-# Creat a change Thickness button
-# Creat a save button
-#-------------------------------------------------------------------------------------------------------------------
-#-------------------------------------------------------------------------------------------------------------------
-
-
-#-------------------------------------------------------------------------------------------------------------------
-#-------------------------------------------------------------------------------------------------------------------
 # Lybraries
 
-import tkinter
-from tkinter import ttk
-from tkinter import *
-# read to learn more about tkinter library: https://docs.python.org/pt-br/3/library/tk.html
-# "*" is used to import everything from the library
-from tkinter import filedialog
-import PIL.ImageGrab as ImageGrab
+import tkinter # main library - for GUI (Graphical User Interface)
+from tkinter import * # main importing from tkinter - used in most functionalities
+from tkinter import ttk # additional necessary importing - used in slider functionality
+from tkinter import filedialog # additional necessary importing - used in save functionality
+import PIL.ImageGrab as ImageGrab # additional necessary importing - used in save functionality
 #-------------------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------------------
 
 whiteboard  = Tk()
+# The "root" of our projetc
 # Instantiating the object Tk() of the class to the variable "whiteboard"
 # So we can use all the functions of that object of the class through the variable "whiteboard"
-# An object is a collection of variables and methods (functions).
+# An object is a collection of variables and methods.
 
 #-------------------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------------------
 # Functions
 
+# Value that is gonna be used on the slider - define initial value of it ass 1, to be  possible to draw
 current_value = tkinter.DoubleVar(whiteboard, 1)
 
+# Return the value readed on the slider
 def get_current_value():
     return '{: .2}'.format(current_value.get())
 
-# To define the color of what will be drawn
+# Define the color of what will be drawn
 def set_color(new_color):
     global color, line_width, cursor_color
 
     color = new_color
-    line_width = get_current_value()
+    line_width = get_current_value() # It is the thickness of the pencil
 
-# To locate the xy address of the point when you click with the mouse
+# Locate the xy address of the point when you click with the mouse
 def locate_xy(work):
     global current_x, current_y
 
@@ -54,17 +45,18 @@ def locate_xy(work):
 def eraser():
     set_color('white')
 
-# To draw when you press the mouse button and moved the mouse
+# Draw when you press the mouse button and moved the mouse
 def draw(work):
     global current_x, current_y
 
     line_width = get_current_value()
 
+    # Basically it is going to draw a circle, but only the border of it on one point
     whiteboard_canvas.create_oval((current_x, current_y, work.x, work.y), outline= color, width=line_width)
     current_x = work.x
     current_y = work.y
 
-# To creat the colours of the colour palette
+# Creat the colours of the colour palette
 def create_colour(position_y, c_opt):
 
     color = ''
@@ -90,7 +82,7 @@ def create_colour(position_y, c_opt):
     # Bind the click of the button 1 of the mouse with the set_color function with the current color
     colour_palette_canvas.tag_bind(id, '<Button-1>', lambda x: set_color(color))
     
-# To clear all the canvas and rebuild it
+# Clear all the canvas and rebuild it
 def clear_all():
     c_opt = 1 # color option
     position_y = 10
@@ -102,12 +94,22 @@ def clear_all():
         c_opt += 1
         position_y += 40
 
+# Save the image
 def saveImage():
+    # Choose a location to save the file
     fileLocation = filedialog.asksaveasfilename(defaultextension="jpg")
+
+    # Define the initial coordinates of the image to be saved
     x = whiteboard.winfo_rootx()+100
     y = whiteboard.winfo_rooty()+35
+
+    # Define the final coordinates of the image to be saved
     img = ImageGrab.grab(bbox=(x,y,x+900,y+470))
+    
+    # Show the image saved
     img.show()
+
+    # Save it
     img.save(fileLocation)
 
 #-------------------------------------------------------------------------------------------------------------------
@@ -121,16 +123,23 @@ def saveImage():
 #-------------------------------------------------------------------------------------------------------------------
 # Creating the whiteboard window
 
+
+
 # Defining whiteboard parameters
 
 # Title
 whiteboard.title("Whiteboard")
+
 # Dimensions and Position
 whiteboard.geometry("1050x570+150+50")
+
 # Locking the dimensions of the whiteboard
 whiteboard.resizable(False, False) # Width and Height
+
 # Background colour
 whiteboard.configure(bg="#d3d3d3") # d3d3d3 -> hexadecimal to light gray color
+
+
 
 # Creating the items of the whiteboard
 
@@ -180,7 +189,7 @@ for counter in range(1, 8):
 # Set the initial color of hte mouse
 set_color('black')
 
-# Bind the whiteboard canvas with the functions when the mouse is click os moved (with the button pressed)
+# Bind the whiteboard canvas with the functions when the mouse is clicked os moved (with the button pressed)
 whiteboard_canvas.bind('<Button-1>', locate_xy)
 whiteboard_canvas.bind('<B1-Motion>', draw)
 
