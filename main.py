@@ -14,11 +14,11 @@
 
 import tkinter
 from tkinter import ttk
-
 from tkinter import *
-# "tkinter" provides a robust, platform-independent windowing toolkit that is available to Python programmers
 # read to learn more about tkinter library: https://docs.python.org/pt-br/3/library/tk.html
 # "*" is used to import everything from the library
+from tkinter import filedialog
+import PIL.ImageGrab as ImageGrab
 #-------------------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------------------
 
@@ -102,6 +102,14 @@ def clear_all():
         c_opt += 1
         position_y += 40
 
+def saveImage():
+    fileLocation = filedialog.asksaveasfilename(defaultextension="jpg")
+    x = whiteboard.winfo_rootx()+100
+    y = whiteboard.winfo_rooty()+35
+    img = ImageGrab.grab(bbox=(x,y,x+900,y+470))
+    img.show()
+    img.save(fileLocation)
+
 #-------------------------------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------------------------------
 
@@ -133,6 +141,7 @@ whiteboard.iconbitmap(default="icon/whiteboard.ico")
 color_sidebar_image = PhotoImage(file="images/color_sidebar.png")
 eraser_image = PhotoImage(file="images/eraser.png")
 garbage_image = PhotoImage(file="images/garbage.png")
+save_image = PhotoImage(file="images/save.png")
 
 # slader
 slider = ttk.Scale(whiteboard, from_=2, to=100, orient='horizontal', variable= current_value)
@@ -155,6 +164,8 @@ eraser_button = Button(whiteboard, image=eraser_image, bg="#f2f3f5", command=era
 eraser_button.place(x=25, y=340)
 garbage_button = Button(whiteboard, image=garbage_image, bg="#f2f3f5", command=clear_all)
 garbage_button.place(x=25, y=395)
+save_button = Button(whiteboard, image=save_image, bg="#f2f3f5", command=saveImage)
+save_button.place(x=25, y=450)
 
 # collours of the colour_palette_canvas
 c_opt = 1 # color option
@@ -166,7 +177,7 @@ for counter in range(1, 8):
     position_y += 40
 #-------------------------------------------------------------------------------------------------------------------
 
-# Set the initial color of hte mouse with nothing
+# Set the initial color of hte mouse
 set_color('black')
 
 # Bind the whiteboard canvas with the functions when the mouse is click os moved (with the button pressed)
