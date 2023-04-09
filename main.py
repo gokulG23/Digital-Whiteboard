@@ -141,8 +141,8 @@ slider.place(x=100, y=525)
 # labels
 color_sidebar_label = Label(whiteboard, image=color_sidebar_image, bg="#d3d3d3")
 color_sidebar_label.place(x=10, y=15)
-value_label = ttk.Label(whiteboard, text="thickness")
-value_label.place(x=210, y=530)
+slider_value_label = ttk.Label(whiteboard, text="thickness")
+slider_value_label.place(x=210, y=530)
 
 # Canvas
 colour_palette_canvas = Canvas(whiteboard, bg="#ffffff", width=50, height=290, bd=0)
