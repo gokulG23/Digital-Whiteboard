@@ -1,0 +1,162 @@
+for row in range(7):
+  for col in range(8):
+    if (row==0) and (col==7):
+      print('*',end=' ')
+    elif (row==1) and (col==6):
+      print('*',end=' ')
+    elif (row==2) and (col==5):
+      print('*',end=' ')
+    elif (row==3) and (col==4):
+      print('*',end=' ')
+    elif (row==4) and (col==3):
+      print('*',end=' ')
+    elif (row==5) and (col==2):
+      print('*',end=' ')
+    elif (row==6) and (col==1):
+      print('*',end=' ')
+    elif(row==0) and col in(1,2,3,4,5,6,7):
+      print("*",end=" ")
+    elif(row==6) and col in(1,2,3,4,5,6,7):
+      print("*",end=" ")
+    else:
+      print(" ",end=" ")
+  print()
+
+
+
+
+
+
+
+
+
+
+
+
+#5 test on vfon
+#A line of code (LOC) is any line of text in a code that is not a comment or blank line, and also header lines, in any case of the number of statements or fragments of statements on the line. LOC consists of all lines containing the declaration of any variable, and executable and non-executable statements.
+
+#Table of Content
+
+#Features of Lines of Code (LOC)
+#Advantages of Lines of Code (LOC)
+#Disadvantages of Lines of Code (LOC)
+#As Lines of Code (LOC) only counts the volume of code, you can only use it to compare or estimate projects that use the same language and are coded using the same coding standards. 
+
+Features of Lines of Code (LOC)
+Change Tracking: Variations in LOC as time passes can be tracked to analyze the growth or reduction of a codebase, providing insights into project progress.
+Limited Representation of Complexity: Despite LOC provides a general idea of code size, it does not accurately depict code complexity. It is possible for two programs having the same LOC to be incredibly complex.
+Ease of Computation: LOC is an easy measure to obtain because it is easy to calculate and takes little time.
+Easy to Understand: The idea of expressing code size in terms of lines is one that stakeholders, even those who are not technically inclined, can easily understand.
+Advantages of Lines of Code (LOC)
+Effort Estimation: LOC is occasionally used to estimate development efforts and project deadlines at a high level. Although caution is necessary, project planning can begin with this.
+Comparative Analysis: High-level productivity comparisons between several projects or development teams can be made using LOC. It might provide an approximate figure of the volume of code generated over a specific time frame.
+Benchmarking Tool: When comparing various iterations of the same program, LOC can be used as a benchmarking tool. It may bring information on how modifications affect the codebase’s total size.
+Disadvantages of Lines of Code (LOC)
+Challenges in Agile Work Environments: Focusing on initial LOC estimates may not adequately reflect the iterative and dynamic nature of development in agile development, as requirements may change.
+Not Considering Into Account External Libraries: Code from other libraries or frameworks, which can greatly enhance a project’s overall usefulness, is not taken into account by LOC.
+Challenges with Maintenance: Higher LOC codebases are larger codebases that typically demand more maintenance work.
+Research has shown a rough correlation between LOC and the overall cost and length of developing a project/ product in Software Development and between LOC and the number of defects. This means the lower your LOC measurement is, the better off you probably are in the development of your product.
+Master Software Testing and Automation in an efficient and time-bound manner by mentors with real-time industry experience. Join our Software Automation Course and embark on an exciting journey, mastering the skill set with ease!
+What We Offer:
+
+Comprehensive Software Automation program
+Expert Guidance for Efficient Learning
+Hands-on Experience with Real-world Projects
+Proven Track Record with 10,000+ Successful Geeks
+
+13
+ Suggest improvement
+Previous
+Functional Point (FP) Analysis - Software Engineering
+Next
+Waterfall Model - Software Engineering
+Share your thoughts in the comments
+###
+git clone <url>
+cd <res name>
+git remote add upstream <url>
+git fetch upstream
+git merge upstram/main
+git status
+git remote add origin <url>
+git remote -v
+git push -u
+C:/windows/notepad <res name>
+git status
+git add .
+git commit -m"changes made"
+git status
+git push origin main
+git branch read
+git checkout read
+git push origin main
+git push origin read
+midir git_demo
+cd git_demo
+pwd
+midir changes
+ped
+pwd
+git init
+git pull <url>
+
+#6
+git init
+git clone <url>
+git remote add origin <url>
+git fetch origin
+git pull origin main
+git branch test
+git checkout test
+git checkout main
+git merge test
+git mergetool
+gut branch -d test
+git submodule add <url>
+git submodule update --remote
+git submodule deinit test
+git submodule modules
+git config --global alias.co "checkout"
+git co.test
+###
+#5 test on vfon
+#A line of code (LOC) is any line of text in a code that is not a comment or blank line, and also header lines, in any case of the number of statements or fragments of statements on the line. LOC consists of all lines containing the declaration of any variable, and executable and non-executable statements.
+
+#Table of Content
+
+#Features of Lines of Code (LOC)
+#Advantages of Lines of Code (LOC)
+#Disadvantages of Lines of Code (LOC)
+#As Lines of Code (LOC) only counts the volume of code, you can only use it to compare or estimate projects that use the same language and are coded using the same coding standards. 
+
+Features of Lines of Code (LOC)
+Change Tracking: Variations in LOC as time passes can be tracked to analyze the growth or reduction of a codebase, providing insights into project progress.
+Limited Representation of Complexity: Despite LOC provides a general idea of code size, it does not accurately depict code complexity. It is possible for two programs having the same LOC to be incredibly complex.
+Ease of Computation: LOC is an easy measure to obtain because it is easy to calculate and takes little time.
+Easy to Understand: The idea of expressing code size in terms of lines is one that stakeholders, even those who are not technically inclined, can easily understand.
+Advantages of Lines of Code (LOC)
+Effort Estimation: LOC is occasionally used to estimate development efforts and project deadlines at a high level. Although caution is necessary, project planning can begin with this.
+Comparative Analysis: High-level productivity comparisons between several projects or development teams can be made using LOC. It might provide an approximate figure of the volume of code generated over a specific time frame.
+Benchmarking Tool: When comparing various iterations of the same program, LOC can be used as a benchmarking tool. It may bring information on how modifications affect the codebase’s total size.
+Disadvantages of Lines of Code (LOC)
+Challenges in Agile Work Environments: Focusing on initial LOC estimates may not adequately reflect the iterative and dynamic nature of development in agile development, as requirements may change.
+Not Considering Into Account External Libraries: Code from other libraries or frameworks, which can greatly enhance a project’s overall usefulness, is not taken into account by LOC.
+Challenges with Maintenance: Higher LOC codebases are larger codebases that typically demand more maintenance work.
+Research has shown a rough correlation between LOC and the overall cost and length of developing a project/ product in Software Development and between LOC and the number of defects. This means the lower your LOC measurement is, the better off you probably are in the development of your product.
+Master Software Testing and Automation in an efficient and time-bound manner by mentors with real-time industry experience. Join our Software Automation Course and embark on an exciting journey, mastering the skill set with ease!
+What We Offer:
+
+Comprehensive Software Automation program
+Expert Guidance for Efficient Learning
+Hands-on Experience with Real-world Projects
+Proven Track Record with 10,000+ Successful Geeks
+
+13
+ Suggest improvement
+Previous
+Functional Point (FP) Analysis - Software Engineering
+Next
+Waterfall Model - Software Engineering
+Share your thoughts in the comments
+#
